@@ -19,11 +19,6 @@ const Navbar = () => {
             Home
           </Link>
         </li>
-        <li className="nav-item d-none d-sm-inline-block">
-          <Link to="/orders/list" className="nav-link">
-            Orders List
-          </Link>
-        </li>
       </ul>
 
       <ul className="navbar-nav ml-auto">

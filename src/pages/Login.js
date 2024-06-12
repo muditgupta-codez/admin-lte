@@ -21,18 +21,21 @@ const Login = () => {
       return;
     }
     try {
-      const loginpromise = axios.post("/admin/login", {
-        email: email,
+      const loginpromise = axios.post("/admin/auth/login", {
+        username: email,
         password: password,
       });
+
       const response = await toast.promise(loginpromise, {
         success: (await loginpromise).data.message,
         error: "Something went Wrong!",
       });
-      if (response?.data?.token) {
-        setAuth({ token: response.data.token, user: response.data.user });
-        localStorage.setItem("token", response.data.token);
-        localStorage.setItem("user", JSON.stringify(response.data.user));
+      console.log(response.data.data);
+
+      if (response?.data?.data?.token) {
+        setAuth({ token: response?.data?.data?.token, user: response?.data?.data?.user });
+        localStorage.setItem("token", response?.data?.data?.token);
+        localStorage.setItem("user", JSON.stringify(response?.data?.data?.username));
         navigate(from, { replace: true });
       }
     } catch (err) {
